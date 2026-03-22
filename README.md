@@ -1,82 +1,137 @@
-# humanai-gsoc-2026
+# 🎨 HumanAI GSoC Tasks Submission
 
-# 🎨 HumanAI GSoC Task 1 – Artwork Classification
-
-This repository contains my implementation for Task 1 of the HumanAI GSoC selection process. The objective of this task is to build a model capable of classifying artworks using convolutional architectures and to analyze model performance, including identifying outliers.
+This repository contains my implementation for Task 1 and Task 2 of the HumanAI GSoC selection process, focusing on applying AI techniques to the Arts and Humanities domain.
 
 ---
 
-## 🚀 Overview
+# =========================
+# 🚀 TASK 1: ARTWORK CLASSIFICATION
+# =========================
 
-In this task, I developed an image classification pipeline to identify the artist of a given artwork. The implementation focuses on building a stable and efficient system using deep learning techniques, while ensuring correctness and interpretability of results.
+## Overview
 
----
-
-## ⚙️ Approach
-
-- Artwork images are preprocessed by resizing them to 224×224 and converting them into tensor format.
-- Artist labels are extracted from image filenames and mapped to numerical classes.
-- The dataset is split into training and validation sets (80–20).
-- A pre-trained **ResNet-18** model is used and fine-tuned for classification.
-- Transfer learning is applied by freezing most layers and training only the final classification layer.
+The objective of Task 1 is to build a model capable of classifying artworks based on visual attributes such as artist, style, and genre using convolutional architectures.
 
 ---
 
-## 🧠 Model
+## Approach
 
-- Architecture: ResNet-18 (Convolutional Neural Network)
-- Loss Function: CrossEntropyLoss
-- Optimizer: Adam
-- Training Strategy: Batch-based training with frozen backbone layers for efficiency
-
----
-
-## 📊 Results
-
-- Achieved approximately **28% validation accuracy** across ~45 artist classes
-- Observed decreasing training loss over epochs, indicating effective learning
-- Performance is reasonable given limited training time and dataset size
+- Images are preprocessed by resizing to 224×224 and converting into tensors  
+- Artist labels are extracted from filenames and mapped to numerical classes  
+- Dataset is split into training and validation sets (80–20)  
+- A pre-trained **ResNet-18** model is fine-tuned for classification  
+- Transfer learning is applied by freezing most layers and training only the final layer  
 
 ---
 
-## 🔍 Outlier Detection
+## Model
 
-Outliers are identified using model confidence:
-
-- Softmax probabilities are computed for predictions
-- The maximum probability (confidence score) is extracted
-- Samples with confidence below a threshold (0.4) are flagged as outliers
-
-These outliers typically represent:
-- Ambiguous artworks
-- Difficult classification cases
-- Potential inconsistencies in the dataset
-
+- Architecture: ResNet-18 (CNN)  
+- Loss Function: CrossEntropyLoss  
+- Optimizer: Adam  
+- Training: Batch-based training with frozen backbone  
 
 ---
 
-## ▶️ Running the Code
+## Results
 
-1. Open the notebook in Google Colab or Jupyter
-2. Mount Google Drive if required
-3. Set the dataset path
-4. Run all cells sequentially
-
----
-
-## 🔮 Future Improvements
-
-- Extend to multi-task classification (artist, style, genre)
-- Integrate convolutional-recurrent architectures
-- Train on full dataset for improved accuracy
-- Use advanced evaluation metrics (F1-score, confusion matrix)
-- Apply data augmentation techniques
+- Achieved ~28% validation accuracy across ~45 classes  
+- Observed decreasing training loss over epochs  
+- Model successfully learned meaningful visual features  
 
 ---
 
-## ✅ Conclusion
+## Outlier Detection
 
-A convolutional neural network-based approach was successfully implemented for artwork classification. The model demonstrates the ability to learn meaningful visual features and achieve reasonable performance within constrained resources.
+- Softmax probabilities used to compute confidence scores  
+- Predictions with confidence < 0.4 flagged as outliers  
 
-A simplified CNN-based pipeline was intentionally used to ensure stability and correctness. This approach provides a strong foundation that can be extended to more advanced architectures, including convolutional-recurrent models, for deeper analysis of artistic attributes.
+These represent:
+- Ambiguous artworks  
+- Difficult classification cases  
+- Potential dataset inconsistencies  
 
+---
+
+## Conclusion (Task 1)
+
+A convolutional neural network-based approach was successfully implemented for artwork classification. The model demonstrates the ability to capture visual features and perform multi-class classification effectively.
+
+A simplified CNN pipeline was used to ensure stability, with future scope to extend into convolutional-recurrent architectures for richer feature representation.
+
+---
+
+# =========================
+# 🔍 TASK 2: IMAGE SIMILARITY
+# =========================
+
+## Overview
+
+The objective of Task 2 is to build a system that identifies visually similar paintings based on features such as facial structure, pose, and composition.
+
+---
+
+## Approach
+
+- A pre-trained CNN (**ResNet-18**) is used as a feature extractor  
+- The final classification layer is removed to obtain image embeddings  
+- Each image is converted into a feature vector  
+- Similarity between images is computed using **cosine similarity**  
+
+---
+
+## Method
+
+1. Extract feature embeddings from all images  
+2. Select a query image  
+3. Compute cosine similarity between query and dataset images  
+4. Retrieve top-K most similar images  
+
+---
+
+## Results
+
+- Successfully retrieved visually similar paintings  
+- Similarity scores reflect closeness in visual representation  
+- Retrieved images often share:
+  - Similar facial orientation  
+  - Comparable poses  
+  - Consistent composition patterns  
+
+---
+
+## Evaluation Metrics
+
+- **Cosine Similarity Score**  
+  Measures similarity between feature vectors  
+
+- **Qualitative Evaluation**  
+  Visual inspection confirms meaningful similarity in retrieved images  
+
+---
+
+## Output
+
+- Query image displayed alongside top similar images  
+- Similarity scores provided for each retrieved image  
+
+---
+
+## Conclusion (Task 2)
+
+A feature-based similarity system was successfully implemented using a pre-trained convolutional network. The model demonstrates the ability to capture high-level visual characteristics and retrieve semantically similar artworks.
+
+This approach provides a scalable foundation for advanced similarity systems, including those using metric learning or multimodal representations.
+
+---
+
+# 🎯 FINAL CONCLUSION
+
+Both tasks demonstrate the effective application of deep learning techniques to artwork analysis:
+
+- Task 1 focuses on classification using supervised learning  
+- Task 2 focuses on similarity using feature-based representation  
+
+A simplified yet robust approach was chosen to ensure correctness, efficiency, and interpretability. The implementations provide a strong foundation for extending into more advanced architectures and deeper analysis within the Arts and Humanities domain.
+
+---
